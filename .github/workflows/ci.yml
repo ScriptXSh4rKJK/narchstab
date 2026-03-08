@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-gcc:
+    name: Build (GCC)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y gcc make
+
+      - name: Build
+        run: make CC=gcc
+
+      - name: Verify binary runs
+        run: |
+          ./narchstab --version
+          ./narchstab --help
+
+      - name: Dry-run oom
+        run: ./narchstab --dry-run oom
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: narchstab-gcc-${{ github.sha }}
+          path: narchstab
+
+  build-clang:
+    name: Build (Clang)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y clang make
+
+      - name: Build
+        run: make CC=clang
+
+      - name: Verify binary runs
+        run: |
+          ./narchstab --version
+          ./narchstab --help
+
+  lint:
+    name: Lint (cppcheck)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cppcheck
+        run: sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck
+        run: |
+          cppcheck \
+            --enable=all \
+            --error-exitcode=1 \
+            --std=c11 \
+            --suppress=missingIncludeSystem \
+            --suppress=checkersReport \
+            -Iinclude \
+            src/
+
+  release:
+    name: Release tarball
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build-gcc, build-clang, lint]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y gcc make
+
+      - name: Build release binary
+        run: make CC=gcc
+
+      - name: Create release tarball
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          tar -cJf narchstab-${VERSION}.tar.xz \
+            --transform "s|^|narchstab-${VERSION}/|" \
+            Makefile LICENSE README.md CHANGELOG.md \
+            include/ src/ etc/
+          sha256sum narchstab-${VERSION}.tar.xz > narchstab-${VERSION}.tar.xz.sha256
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            narchstab-*.tar.xz
+            narchstab-*.tar.xz.sha256
+          generate_release_notes: true
