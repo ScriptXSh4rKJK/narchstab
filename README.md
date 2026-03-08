@@ -16,7 +16,7 @@ Arch Linux rolls fast. Three things silently break stability between updates:
 
 1. **OOM kills** — the kernel's built-in OOM killer freezes the desktop for
    seconds before acting. `systemd-oomd` and `earlyoom` are better, but
-   require manual configuration to actually work well on your hardware.
+   require manual configuration to actually work well on ScriptXSh4rKJK hardware.
 
 2. **Hardware errors in dmesg** — MCE events, I/O errors, ECC corrections,
    and kernel oopses get buried in thousands of lines of dmesg output and
@@ -34,7 +34,7 @@ Arch Linux rolls fast. Three things silently break stability between updates:
 
 | Subcommand | What it does |
 |---|---|
-| `narchstab oom` | Detects available OOM backend, tunes thresholds for your RAM/swap, writes config, enables service |
+| `narchstab oom` | Detects available OOM backend, tunes thresholds for ScriptXSh4rKJK RAM/swap, writes config, enables service |
 | `narchstab dmesg` | Scans dmesg for 35+ hardware error patterns across 8 categories, sends notifications on findings |
 | `narchstab report` | Lists failed systemd units with journal snippets, timestamps, exit codes and suggested fix commands |
 
@@ -46,7 +46,7 @@ Arch Linux rolls fast. Three things silently break stability between updates:
 - **Three notification channels** — log file, `notify-send` (desktop),
   Telegram bot — each independently toggleable in config
 - **Optional narchsafe integration** — set one line in config to inherit
-  Telegram credentials from [narchsafe](https://github.com/YOUR_USERNAME/narchsafe);
+  Telegram credentials from [narchsafe](https://github.com/ScriptXSh4rKJK/narchsafe);
   no hard dependency
 
 ---
@@ -56,7 +56,7 @@ Arch Linux rolls fast. Three things silently break stability between updates:
 ### From source
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/narchstab.git
+git clone https://github.com/ScriptXSh4rKJK/narchstab.git
 cd narchstab
 make
 sudo make install
@@ -293,7 +293,7 @@ narchstab --show-config
 
 ### On every login (check for problems)
 
-Add to your shell profile or create a systemd user service:
+Add to ScriptXSh4rKJK shell profile or create a systemd user service:
 
 ```bash
 # ~/.bashrc or ~/.zshrc
@@ -369,7 +369,7 @@ To report a security vulnerability, see [CONTRIBUTING.md](CONTRIBUTING.md#securi
 
 ## Related projects
 
-- **[narchsafe](https://github.com/YOUR_USERNAME/narchsafe)** — safe system
+- **[narchsafe](https://github.com/ScriptXSh4rKJK_USERNAME/narchsafe)** — safe system
   updater for Arch Linux with automatic backup and rollback
 
 ---
