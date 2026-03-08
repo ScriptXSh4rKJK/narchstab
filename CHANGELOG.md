@@ -51,5 +51,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Lock file PID written with `fsync()` for visibility across processes
 - Config files written with `fsync()` before close
 
-[Unreleased]: https://github.com/YOUR_USERNAME/narchstab/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/YOUR_USERNAME/narchstab/releases/tag/v1.0.0
+[Unreleased]: https://github.com/ScriptXSh4rKJK/narchstab/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/ScriptXSh4rKJK/narchstab/releases/tag/v1.0.0
