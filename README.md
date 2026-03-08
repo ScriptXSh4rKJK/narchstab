@@ -4,7 +4,7 @@
 One binary, three subcommands — configure OOM protection, scan for hardware
 errors, and report failed systemd units.
 
-[![CI](https://github.com/YOUR_USERNAME/narchstab/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/narchstab/actions/workflows/ci.yml)
+[![CI](https://github.com/ScriptXSh4rKJK/narchstab/actions/workflows/ci.yml/badge.svg)](https://github.com/ScriptXSh4rKJK/narchstab/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](CHANGELOG.md)
 
