@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2025-03-08
+## [1.0.0] - 2026-03-08
 
 ### Added
 - `narchstab oom` — automatic OOM killer configuration for `systemd-oomd` and `earlyoom`
